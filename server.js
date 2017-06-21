@@ -9,6 +9,7 @@ const portNumber = 63145;
 let messages = require('./data/messages');
 let users = require('./data/users');
 let clients = require('./data/clients');
+let passwordRules = require('./data/password-rules');
 
 app.use(bodyParser.json());
 app.use((req, res, next) => {
@@ -22,18 +23,18 @@ let api  = express.Router();
 let auth  = express.Router();
 
 // messages API
-api.get('/messages', utils.checkAuthenticated, (req, res) => {
+api.get('/messages', (req, res) => {
     res.json(messages);
 });
 
-api.get('/messages/:user', utils.checkAuthenticated, (req, res) => {
+api.get('/messages/:user', (req, res) => {
     let user = req.params.user;
     let result = messages.filter(message => message.owner == user);
 
     res.json(result);
 });
 
-api.post('/messages', utils.checkAuthenticated, (req, res) => {
+api.post('/messages', (req, res) => {
     let message = req.body;
 
     messages.push(message);
@@ -52,28 +53,40 @@ api.post('/users/me', utils.checkAuthenticated, (req, res) => {
 
     user.firstname = req.body.firstname;
     user.lastname = req.body.lastname;
+    user.password = req.body.password;
 
     res.json(user);
 });
 
 // clients API
-api.get('/api/client', utils.checkAuthenticated, (req, res) => {
+api.get('/api/client', (req, res) => {
     res.json(clients);
 });
 
-api.get('/api/client/:clientid', utils.checkAuthenticated, (req, res) => {
+api.get('/api/client/:clientid', (req, res) => {
     let clientid = req.params.clientid;
     let result = clients.filter(client => client.clientid == clientid);
 
     res.json(result);
 });
 
-api.post('/api/saveclient', utils.checkAuthenticated, (req, res) => {
+api.post('/api/saveclient', (req, res) => {
     let client = clients[req.client];
 
     client = req.body;
 
     res.json(client);
+});
+
+// password rules API
+api.get('/password-rules', (req, res) => {
+    res.json(passwordRules);
+});
+
+api.post('/password-rules', (req, res) => {
+    passwordRules = req.body;
+
+    res.json(passwordRules);
 });
 
 // authentication API

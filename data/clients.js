@@ -15,7 +15,15 @@ let clients = [
         demographicupdatetaskuserno: '',
         demographicupdatetaskgroup: '',
         useusernofordemographicupdatetask: false,
-        secureemail: ''
+        secureemail: '',
+        roles: [
+            {name: 'admin'},
+            {name: 'editor'}
+        ],
+        locations: [
+            {name: 'here'},
+            {name: 'there'}
+        ]
     },
     {
         clientid: '040c49df-2466-424b-aa54-ddf13e3d4867',
@@ -33,7 +41,15 @@ let clients = [
         demographicupdatetaskuserno: '',
         demographicupdatetaskgroup: '',
         useusernofordemographicupdatetask: false,
-        secureemail: ''
+        secureemail: '',
+        roles: [
+            {name: 'admin'},
+            {name: 'editor'}
+        ],
+        locations: [
+            {name: 'here'},
+            {name: 'there'}
+        ]
     }
 ];
 
