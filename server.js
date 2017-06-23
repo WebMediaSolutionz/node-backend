@@ -59,18 +59,18 @@ api.post('/users/me', utils.checkAuthenticated, (req, res) => {
 });
 
 // clients API
-api.get('/api/client', (req, res) => {
+api.get('/client', (req, res) => {
     res.json(clients);
 });
 
-api.get('/api/client/:clientid', (req, res) => {
+api.get('/client/:clientid', (req, res) => {
     let clientid = req.params.clientid;
     let result = clients.filter(client => client.clientid == clientid);
 
     res.json(result);
 });
 
-api.post('/api/saveclient', (req, res) => {
+api.post('/saveclient', (req, res) => {
     let client = clients[req.client];
 
     client = req.body;
