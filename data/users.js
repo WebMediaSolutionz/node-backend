@@ -5,7 +5,8 @@ let users = [
         firstname: 'maxime',
         lastname: 'pierre',
         username: 'doctor',
-        password: 'orthodoc'
+        password: 'orthodoc',
+        role: 'admin'
     }
 ];
 
