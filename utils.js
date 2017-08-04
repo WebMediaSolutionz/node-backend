@@ -1,9 +1,10 @@
+// loading relevant packages
 const jwt = require('jsonwebtoken');
-const secret = '123';
+const secretKey = '123';
 
 const utils = {
     sendToken: (user, res) => {
-        let token = jwt.sign(user.id, secret);
+        let token = jwt.sign(user.id, secretKey);
 
         res.json({firstname: user.firstname, token});
     },
@@ -19,7 +20,7 @@ const utils = {
 
         let token = req.header('authorization').split(' ')[1];
 
-        let payload = jwt.decode(token, secret);
+        let payload = jwt.decode(token, secretKey);
 
         if (!payload) {
             return res.status(401).send({message: 'Unauthorized request. Authentication header invalid'});
