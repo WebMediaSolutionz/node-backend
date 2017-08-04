@@ -117,12 +117,12 @@ auth.post('/login', (req, res) => {
 
     if (!user) {
         utils.sendAuthError(res);
-    }
-
-    if (user.password === unauthenticatedUser.password) {
-        utils.sendToken(user, res);
     } else {
-        utils.sendAuthError(res);
+        if (user.password === unauthenticatedUser.password) {
+            utils.sendToken(user, res);
+        } else {
+            utils.sendAuthError(res);
+        }
     }
 });
 
